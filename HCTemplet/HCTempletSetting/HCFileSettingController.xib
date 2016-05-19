@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HCFileSettingController">
@@ -36,21 +36,26 @@
                                 <collectionView id="8Fw-bh-OPl">
                                     <rect key="frame" x="0.0" y="0.0" width="631" height="52"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
                                     <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </collectionView>
                             </subviews>
+                            <animations/>
                         </clipView>
                         <constraints>
                             <constraint firstAttribute="height" constant="54" id="RmI-pa-rs6"/>
                             <constraint firstAttribute="width" constant="633" id="rNH-bN-iUY"/>
                         </constraints>
+                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Ded-Lp-Z63">
                             <rect key="frame" x="1" y="144" width="233" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="IiJ-dw-S71">
                             <rect key="frame" x="234" y="1" width="15" height="143"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                     </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zlh-Cl-rro">
@@ -59,6 +64,7 @@
                             <constraint firstAttribute="height" constant="24" id="E3w-bN-OIV"/>
                             <constraint firstAttribute="width" constant="24" id="TZh-ZJ-4aJ"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="square" title="+" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="WP8-13-B0T">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system" size="19"/>
@@ -73,6 +79,7 @@
                             <constraint firstAttribute="height" constant="24" id="Adb-Lg-1nI"/>
                             <constraint firstAttribute="width" constant="24" id="QAi-qv-Ztd"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="square" title="-" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GPp-3C-0oI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system" size="18"/>
@@ -87,6 +94,7 @@
                             <constraint firstAttribute="width" constant="65" id="OvM-Q3-y6R"/>
                             <constraint firstAttribute="height" constant="22" id="X5p-yS-6kX"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="smallSquare" title="Remove" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="ddJ-Ws-tLx">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -100,6 +108,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="204" id="LOA-ql-h7l"/>
                         </constraints>
+                        <animations/>
                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Find Templet Name" usesSingleLineMode="YES" bezelStyle="round" id="dFH-RG-C7M">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -112,6 +121,7 @@
                             <constraint firstAttribute="height" constant="22" id="KzU-Vd-Ize"/>
                             <constraint firstAttribute="width" constant="50" id="tGS-vW-lqn"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="smallSquare" title="Edit" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="9vA-sX-gg3">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -129,6 +139,7 @@
                                 <tableView identifier="cell0" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" headerView="dmK-vE-P3Y" viewBased="YES" id="ZMR-DG-B8e">
                                     <rect key="frame" x="6" y="0.0" width="202" height="411"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
                                     <size key="intercellSpacing" width="5" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <tableViewGridLines key="gridStyleMask" vertical="YES" dashed="YES"/>
@@ -153,6 +164,7 @@
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="j10-KU-zc0">
                                                             <rect key="frame" x="0.0" y="3" width="199" height="17"/>
+                                                            <animations/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" id="TZR-bv-6rX">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -166,6 +178,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="j10-KU-zc0" secondAttribute="bottom" constant="3" id="YrY-Zr-WZk"/>
                                                         <constraint firstAttribute="trailing" secondItem="j10-KU-zc0" secondAttribute="trailing" id="dnI-p4-knN"/>
                                                     </constraints>
+                                                    <animations/>
                                                     <connections>
                                                         <outlet property="textField" destination="j10-KU-zc0" id="hDB-jx-BPD"/>
                                                     </connections>
@@ -175,19 +188,24 @@
                                     </tableColumns>
                                 </tableView>
                             </subviews>
+                            <animations/>
                             <nil key="backgroundColor"/>
                         </clipView>
+                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="fa5-qv-Sgr">
                             <rect key="frame" x="1" y="319" width="202" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1zZ-En-nNE">
                             <rect key="frame" x="188" y="23" width="15" height="312"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <tableHeaderView key="headerView" id="dmK-vE-P3Y">
                             <rect key="frame" x="7" y="0.0" width="202" height="23"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </tableHeaderView>
                     </scrollView>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jci-NH-MmI">
@@ -199,21 +217,26 @@
                                 <collectionView id="ZOb-ra-wcF" customClass="HCFilesCollectionView">
                                     <rect key="frame" x="0.0" y="0.0" width="631" height="393"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
                                     <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </collectionView>
                             </subviews>
+                            <animations/>
                         </clipView>
                         <constraints>
                             <constraint firstAttribute="width" constant="633" id="lXS-yx-GI9"/>
                             <constraint firstAttribute="height" constant="395" id="ud8-Zg-z1Z"/>
                         </constraints>
+                        <animations/>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Rkt-7F-Xji">
                             <rect key="frame" x="1" y="144" width="233" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RIC-5S-B4v">
                             <rect key="frame" x="234" y="1" width="15" height="143"/>
                             <autoresizingMask key="autoresizingMask"/>
+                            <animations/>
                         </scroller>
                     </scrollView>
                     <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ONR-Ka-apu">
@@ -222,6 +245,7 @@
                             <constraint firstAttribute="height" constant="17" id="ZCU-UW-072"/>
                             <constraint firstAttribute="width" constant="149" id="ffb-8V-g2p"/>
                         </constraints>
+                        <animations/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" enabled="NO" sendsActionOnEndEditing="YES" title="This is add &amp; delete files" id="6xO-Og-QBX">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -234,6 +258,7 @@
                             <constraint firstAttribute="width" constant="65" id="dx3-Un-ryH"/>
                             <constraint firstAttribute="height" constant="22" id="lFS-Xn-S4C"/>
                         </constraints>
+                        <animations/>
                         <buttonCell key="cell" type="smallSquare" title="Add" bezelStyle="smallSquare" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="omK-Ms-YkV">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -268,6 +293,7 @@
                     <constraint firstItem="1Z6-TF-Zry" firstAttribute="leading" secondItem="zlh-Cl-rro" secondAttribute="trailing" constant="22" id="ze9-jq-MKf"/>
                     <constraint firstItem="uvP-17-2uc" firstAttribute="top" secondItem="Jci-NH-MmI" secondAttribute="bottom" constant="9" id="zgu-Gc-iu2"/>
                 </constraints>
+                <animations/>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="5kn-mg-H37"/>
