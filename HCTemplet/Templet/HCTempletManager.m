@@ -53,7 +53,7 @@ static NSString *SWStr = @"Swift";
  */
 - (void)addTemplateClassAndImageList
 {
-    NSString *iconPath = [self.pluginsBundle pathForResource:@"Objective-C" ofType:@"png"];
+    NSString *iconPath = [self.pluginsBundle pathForResource:OCStr ofType:@"png"];
     if (_fileLanguage == HCFileTypeOC) {
         //create objective-c file
         NSString *classNameH = [self createClassName:@"ViewController" suffix:@"h"];
@@ -67,7 +67,7 @@ static NSString *SWStr = @"Swift";
         NSString *classNameSwift = [self createClassName:@"ViewController" suffix:@"swift"];
         _fileTemplets = @[classNameSwift];
         [self copyPluginsFileToTempletForPath:self.egClassSPath toFile:classNameSwift];
-        iconPath = [self.pluginsBundle pathForResource:@"Swift" ofType:@"png"];
+        iconPath = [self.pluginsBundle pathForResource:SWStr ofType:@"png"];
     }
     [self copyPluginsFileToTempletForPath:iconPath toFile:@"TemplateIcon.png"];
 }
@@ -99,11 +99,11 @@ static NSString *SWStr = @"Swift";
         }
     }
     if (ocFleList.count>0) {
-        [fileList addObject:OCStr];
+        [fileList addObject:OCTitleName];
         [fileList addObjectsFromArray:ocFleList];
     }
     if (swFileList.count>0) {
-        [fileList addObject:SWStr];
+        [fileList addObject:SwiftTitleName];
         [fileList addObjectsFromArray:swFileList];
     }
     return fileList;

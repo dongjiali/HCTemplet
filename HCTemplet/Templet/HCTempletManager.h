@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #define FileManager [NSFileManager defaultManager]
-
+#define OCTitleName @"Objective-CøOCStr"
+#define SwiftTitleName @"SwiftøSWStr"
 typedef enum HCFileLanguageType
 {
     HCFileTypeOC = 0,

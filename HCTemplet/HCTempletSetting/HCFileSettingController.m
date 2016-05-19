@@ -68,7 +68,7 @@
 {
     [self reloadDataWithFilter:nil];
     NSInteger row = _tableView.selectedRow;
-    if (row >= 0 && _classFiles.count >= row) {
+    if (row >= 0 && _classFiles.count > row) {
         _collectionView.classFileList = _classFiles[row];
     }else
     {
@@ -81,7 +81,7 @@
     __weak typeof(self) weakSelf = self;
     self.collectionView.editBlock = ^(NSString *className)
     {
-        NSInteger row = self.tableView.selectedRow;
+        NSInteger row = weakSelf.tableView.selectedRow;
         if (row >= 0) {
             weakSelf.classEditController = [[HCClassEditController alloc]initWithWindowNibName:@"HCClassEditController"];
             weakSelf.classEditController.templetName = weakSelf.listOfFiles[row];
@@ -127,7 +127,7 @@
         [alert beginSheetModalForWindow:self.window
                       completionHandler:^(NSModalResponse returnCode) {
                           if (returnCode == NSAlertFirstButtonReturn) {
-                              NSString *templetString = _listOfFiles[row];
+                              NSString *templetString = weakSelf.listOfFiles[row];
                               [weakSelf.fileTempletPlist deleteXCTemplateForName:templetString];
                               [weakSelf reloadFileWithTemplet];
                               [weakSelf.tableView reloadData];
@@ -208,18 +208,18 @@
             
         }
         NSTableCellView *cell = [ tableView makeViewWithIdentifier:@"ClassNameCell" owner:self ];
-        [cell.textField setStringValue:name];
-        if ([name isEqualToString:@"Objective-C"] || [name isEqualToString:@"Swift"]) {
+        if ([name isEqualToString:OCTitleName] || [name isEqualToString:SwiftTitleName]) {
             cell.textField.alignment = NSTextAlignmentCenter;
             cell.textField.font = [NSFont systemFontOfSize:15];
             cell.textField.textColor = [NSColor blackColor];
+            name = [[name componentsSeparatedByString:@"ø"] firstObject];
         }else
         {
             cell.textField.alignment = NSTextAlignmentLeft;
             cell.textField.font = [NSFont systemFontOfSize:13];
             cell.textField.textColor = [NSColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
         }
-        
+        [cell.textField setStringValue:name];
         return cell;
     }
     return nil;
