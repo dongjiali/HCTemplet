@@ -2,7 +2,7 @@
 
 ## What is this?
 
-HCTemplet是一个用于在Xcode自定义类格式薄板的插件，支持oc和swift
+HCTemplet是一个用于在Xcode自定义类格式模板的插件，支持OC和Swift
 
 ![templet](Screenshots/templet.png)
 
@@ -13,9 +13,9 @@ HCTemplet是一个用于在Xcode自定义类格式薄板的插件，支持oc和s
 
 推荐使用[Alcatraz](https://github.com/alcatraz/Alcatraz)。
 
-你也可以clone整个工程，然后编译，插件会自动安装到~/Library/Application Support/Developer/Shared/Xcode/Plug-ins这个目录上。
+你也可以clone整个工程，然后编译，插件会自动安装到~/Library/Application Support/Developer/Shared/Xcode/Plug-ins这个目录下。
 
-一定要选Load Bundle，Skip的话，插件是无法生效的。
+一定要选Load Bundle。Skip的话，插件是无法生效的。
 
 ## How to use it?
 
