@@ -1,0 +1,390 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CD46B7C41CED644C00370A6E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD46B7C31CED644C00370A6E /* AppKit.framework */; };
+		CD46B7C61CED644C00370A6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD46B7C51CED644C00370A6E /* Foundation.framework */; };
+		CD46B7CA1CED644C00370A6E /* HCTemplet.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7C91CED644C00370A6E /* HCTemplet.xcscheme */; };
+		CD46B7DC1CED64B000370A6E /* HCTemplet.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7D91CED64B000370A6E /* HCTemplet.m */; };
+		CD46B7DD1CED64B000370A6E /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7DB1CED64B000370A6E /* NSObject_Extension.m */; };
+		CD46B7E01CED64CB00370A6E /* HCTempletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7DF1CED64CB00370A6E /* HCTempletManager.m */; };
+		CD46B7EA1CED652900370A6E /* Objective-C-h.png in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E21CED652900370A6E /* Objective-C-h.png */; };
+		CD46B7EB1CED652900370A6E /* Objective-C-m.png in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E31CED652900370A6E /* Objective-C-m.png */; };
+		CD46B7EC1CED652900370A6E /* Objective-C.png in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E41CED652900370A6E /* Objective-C.png */; };
+		CD46B7ED1CED652900370A6E /* Swift.png in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E51CED652900370A6E /* Swift.png */; };
+		CD46B7EE1CED652900370A6E /* TemplateInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E61CED652900370A6E /* TemplateInfo.plist */; };
+		CD46B7EF1CED652900370A6E /* VC_H.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E71CED652900370A6E /* VC_H.txt */; };
+		CD46B7F01CED652900370A6E /* VC_M.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E81CED652900370A6E /* VC_M.txt */; };
+		CD46B7F11CED652900370A6E /* VC_S.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7E91CED652900370A6E /* VC_S.txt */; };
+		CD46B7FE1CED654700370A6E /* HCClassEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7F41CED654700370A6E /* HCClassEditController.m */; };
+		CD46B7FF1CED654700370A6E /* HCClassEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7F51CED654700370A6E /* HCClassEditController.xib */; };
+		CD46B8001CED654700370A6E /* HCFilesCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7F71CED654700370A6E /* HCFilesCollectionView.m */; };
+		CD46B8011CED654700370A6E /* HCFileSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7F91CED654700370A6E /* HCFileSettingController.m */; };
+		CD46B8021CED654700370A6E /* HCFileSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7FA1CED654700370A6E /* HCFileSettingController.xib */; };
+		CD46B8031CED654700370A6E /* HCTempletEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD46B7FC1CED654700370A6E /* HCTempletEditController.m */; };
+		CD46B8041CED654700370A6E /* HCTempletEditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46B7FD1CED654700370A6E /* HCTempletEditController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CD46B7C01CED644C00370A6E /* HCTemplet.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HCTemplet.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD46B7C31CED644C00370A6E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		CD46B7C51CED644C00370A6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		CD46B7C91CED644C00370A6E /* HCTemplet.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HCTemplet.xcscheme; path = HCTemplet.xcodeproj/xcshareddata/xcschemes/HCTemplet.xcscheme; sourceTree = SOURCE_ROOT; };
+		CD46B7D11CED644C00370A6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD46B7D81CED64B000370A6E /* HCTemplet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTemplet.h; sourceTree = "<group>"; };
+		CD46B7D91CED64B000370A6E /* HCTemplet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTemplet.m; sourceTree = "<group>"; };
+		CD46B7DA1CED64B000370A6E /* NSObject_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
+		CD46B7DB1CED64B000370A6E /* NSObject_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
+		CD46B7DE1CED64CB00370A6E /* HCTempletManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTempletManager.h; sourceTree = "<group>"; };
+		CD46B7DF1CED64CB00370A6E /* HCTempletManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTempletManager.m; sourceTree = "<group>"; };
+		CD46B7E21CED652900370A6E /* Objective-C-h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Objective-C-h.png"; sourceTree = "<group>"; };
+		CD46B7E31CED652900370A6E /* Objective-C-m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Objective-C-m.png"; sourceTree = "<group>"; };
+		CD46B7E41CED652900370A6E /* Objective-C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Objective-C.png"; sourceTree = "<group>"; };
+		CD46B7E51CED652900370A6E /* Swift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Swift.png; sourceTree = "<group>"; };
+		CD46B7E61CED652900370A6E /* TemplateInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TemplateInfo.plist; sourceTree = "<group>"; };
+		CD46B7E71CED652900370A6E /* VC_H.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VC_H.txt; sourceTree = "<group>"; };
+		CD46B7E81CED652900370A6E /* VC_M.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VC_M.txt; sourceTree = "<group>"; };
+		CD46B7E91CED652900370A6E /* VC_S.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VC_S.txt; sourceTree = "<group>"; };
+		CD46B7F31CED654700370A6E /* HCClassEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCClassEditController.h; sourceTree = "<group>"; };
+		CD46B7F41CED654700370A6E /* HCClassEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCClassEditController.m; sourceTree = "<group>"; };
+		CD46B7F51CED654700370A6E /* HCClassEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCClassEditController.xib; sourceTree = "<group>"; };
+		CD46B7F61CED654700370A6E /* HCFilesCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFilesCollectionView.h; sourceTree = "<group>"; };
+		CD46B7F71CED654700370A6E /* HCFilesCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFilesCollectionView.m; sourceTree = "<group>"; };
+		CD46B7F81CED654700370A6E /* HCFileSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCFileSettingController.h; sourceTree = "<group>"; };
+		CD46B7F91CED654700370A6E /* HCFileSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCFileSettingController.m; sourceTree = "<group>"; };
+		CD46B7FA1CED654700370A6E /* HCFileSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCFileSettingController.xib; sourceTree = "<group>"; };
+		CD46B7FB1CED654700370A6E /* HCTempletEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCTempletEditController.h; sourceTree = "<group>"; };
+		CD46B7FC1CED654700370A6E /* HCTempletEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCTempletEditController.m; sourceTree = "<group>"; };
+		CD46B7FD1CED654700370A6E /* HCTempletEditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HCTempletEditController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CD46B7BE1CED644C00370A6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD46B7C41CED644C00370A6E /* AppKit.framework in Frameworks */,
+				CD46B7C61CED644C00370A6E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CD46B7B71CED644B00370A6E = {
+			isa = PBXGroup;
+			children = (
+				CD46B7C71CED644C00370A6E /* HCTemplet */,
+				CD46B7C21CED644C00370A6E /* Frameworks */,
+				CD46B7C11CED644C00370A6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD46B7C11CED644C00370A6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7C01CED644C00370A6E /* HCTemplet.xcplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CD46B7C21CED644C00370A6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7C31CED644C00370A6E /* AppKit.framework */,
+				CD46B7C51CED644C00370A6E /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD46B7C71CED644C00370A6E /* HCTemplet */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7F21CED654700370A6E /* HCTempletSetting */,
+				CD46B7E11CED652900370A6E /* Resources */,
+				CD46B7D71CED64B000370A6E /* Templet */,
+				CD46B7D11CED644C00370A6E /* Info.plist */,
+				CD46B7C81CED644C00370A6E /* Supporting Files */,
+			);
+			path = HCTemplet;
+			sourceTree = "<group>";
+		};
+		CD46B7C81CED644C00370A6E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7C91CED644C00370A6E /* HCTemplet.xcscheme */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD46B7D71CED64B000370A6E /* Templet */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7D81CED64B000370A6E /* HCTemplet.h */,
+				CD46B7D91CED64B000370A6E /* HCTemplet.m */,
+				CD46B7DA1CED64B000370A6E /* NSObject_Extension.h */,
+				CD46B7DB1CED64B000370A6E /* NSObject_Extension.m */,
+				CD46B7DE1CED64CB00370A6E /* HCTempletManager.h */,
+				CD46B7DF1CED64CB00370A6E /* HCTempletManager.m */,
+			);
+			path = Templet;
+			sourceTree = "<group>";
+		};
+		CD46B7E11CED652900370A6E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7E21CED652900370A6E /* Objective-C-h.png */,
+				CD46B7E31CED652900370A6E /* Objective-C-m.png */,
+				CD46B7E41CED652900370A6E /* Objective-C.png */,
+				CD46B7E51CED652900370A6E /* Swift.png */,
+				CD46B7E61CED652900370A6E /* TemplateInfo.plist */,
+				CD46B7E71CED652900370A6E /* VC_H.txt */,
+				CD46B7E81CED652900370A6E /* VC_M.txt */,
+				CD46B7E91CED652900370A6E /* VC_S.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CD46B7F21CED654700370A6E /* HCTempletSetting */ = {
+			isa = PBXGroup;
+			children = (
+				CD46B7F31CED654700370A6E /* HCClassEditController.h */,
+				CD46B7F41CED654700370A6E /* HCClassEditController.m */,
+				CD46B7F51CED654700370A6E /* HCClassEditController.xib */,
+				CD46B7F61CED654700370A6E /* HCFilesCollectionView.h */,
+				CD46B7F71CED654700370A6E /* HCFilesCollectionView.m */,
+				CD46B7F81CED654700370A6E /* HCFileSettingController.h */,
+				CD46B7F91CED654700370A6E /* HCFileSettingController.m */,
+				CD46B7FA1CED654700370A6E /* HCFileSettingController.xib */,
+				CD46B7FB1CED654700370A6E /* HCTempletEditController.h */,
+				CD46B7FC1CED654700370A6E /* HCTempletEditController.m */,
+				CD46B7FD1CED654700370A6E /* HCTempletEditController.xib */,
+			);
+			path = HCTempletSetting;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CD46B7BF1CED644C00370A6E /* HCTemplet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CD46B7D41CED644C00370A6E /* Build configuration list for PBXNativeTarget "HCTemplet" */;
+			buildPhases = (
+				CD46B7BC1CED644C00370A6E /* Sources */,
+				CD46B7BD1CED644C00370A6E /* Resources */,
+				CD46B7BE1CED644C00370A6E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HCTemplet;
+			productName = HCTemplet;
+			productReference = CD46B7C01CED644C00370A6E /* HCTemplet.xcplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CD46B7B81CED644B00370A6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = curry;
+				TargetAttributes = {
+					CD46B7BF1CED644C00370A6E = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = CD46B7BB1CED644B00370A6E /* Build configuration list for PBXProject "HCTemplet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CD46B7B71CED644B00370A6E;
+			productRefGroup = CD46B7C11CED644C00370A6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CD46B7BF1CED644C00370A6E /* HCTemplet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD46B7BD1CED644C00370A6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD46B7EE1CED652900370A6E /* TemplateInfo.plist in Resources */,
+				CD46B7EF1CED652900370A6E /* VC_H.txt in Resources */,
+				CD46B7EA1CED652900370A6E /* Objective-C-h.png in Resources */,
+				CD46B7FF1CED654700370A6E /* HCClassEditController.xib in Resources */,
+				CD46B8041CED654700370A6E /* HCTempletEditController.xib in Resources */,
+				CD46B7F01CED652900370A6E /* VC_M.txt in Resources */,
+				CD46B7EC1CED652900370A6E /* Objective-C.png in Resources */,
+				CD46B7F11CED652900370A6E /* VC_S.txt in Resources */,
+				CD46B7CA1CED644C00370A6E /* HCTemplet.xcscheme in Resources */,
+				CD46B7EB1CED652900370A6E /* Objective-C-m.png in Resources */,
+				CD46B8021CED654700370A6E /* HCFileSettingController.xib in Resources */,
+				CD46B7ED1CED652900370A6E /* Swift.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CD46B7BC1CED644C00370A6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD46B7E01CED64CB00370A6E /* HCTempletManager.m in Sources */,
+				CD46B8011CED654700370A6E /* HCFileSettingController.m in Sources */,
+				CD46B7FE1CED654700370A6E /* HCClassEditController.m in Sources */,
+				CD46B8001CED654700370A6E /* HCFilesCollectionView.m in Sources */,
+				CD46B7DC1CED64B000370A6E /* HCTemplet.m in Sources */,
+				CD46B7DD1CED64B000370A6E /* NSObject_Extension.m in Sources */,
+				CD46B8031CED654700370A6E /* HCTempletEditController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CD46B7D21CED644C00370A6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		CD46B7D31CED644C00370A6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		CD46B7D51CED644C00370A6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = HCTemplet/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.djl.HCTemplet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Debug;
+		};
+		CD46B7D61CED644C00370A6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(HOME)";
+				INFOPLIST_FILE = HCTemplet/Info.plist;
+				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.djl.HCTemplet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xcplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CD46B7BB1CED644B00370A6E /* Build configuration list for PBXProject "HCTemplet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD46B7D21CED644C00370A6E /* Debug */,
+				CD46B7D31CED644C00370A6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD46B7D41CED644C00370A6E /* Build configuration list for PBXNativeTarget "HCTemplet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD46B7D51CED644C00370A6E /* Debug */,
+				CD46B7D61CED644C00370A6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CD46B7B81CED644B00370A6E /* Project object */;
+}
