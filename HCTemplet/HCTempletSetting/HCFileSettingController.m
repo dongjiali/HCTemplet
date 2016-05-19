@@ -68,8 +68,11 @@
 {
     [self reloadDataWithFilter:nil];
     NSInteger row = _tableView.selectedRow;
-    if (row >= 0) {
-        _collectionView.classFileList = _classFiles.count?_classFiles[row]:nil;
+    if (row >= 0 && _classFiles.count >= row) {
+        _collectionView.classFileList = _classFiles[row];
+    }else
+    {
+        _collectionView.classFileList = nil;
     }
 }
 
@@ -214,7 +217,7 @@
         {
             cell.textField.alignment = NSTextAlignmentLeft;
             cell.textField.font = [NSFont systemFontOfSize:13];
-            cell.textField.textColor = [NSColor colorWithRed:0.55 green:0.55 blue:0.55 alpha:1];
+            cell.textField.textColor = [NSColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
         }
         
         return cell;
