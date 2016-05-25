@@ -6,7 +6,7 @@
 //___COPYRIGHT___
 //
 
-#import "___FILEBASENAMEASIDENTIFIER___ViewController.m"
+#import "___FILEBASENAMEASIDENTIFIER___ViewController.h"
 
 @interface ___FILEBASENAMEASIDENTIFIER___ViewController ()
 
