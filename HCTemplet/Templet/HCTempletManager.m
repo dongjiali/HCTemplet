@@ -198,7 +198,8 @@ static NSString *SWStr = @"Swift";
 {
     NSString *hcFilePatch = self.fileTemplatesPath;
     if ([FileManager fileExistsAtPath:hcFilePatch]) {
-        [string writeToFile:[NSString stringWithFormat:@"%@/%@",hcFilePatch,className] atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        NSError *error = nil;
+        [string writeToFile:[NSString stringWithFormat:@"%@/%@",hcFilePatch,className] atomically:YES encoding:NSUTF8StringEncoding error:&error];
     };
 }
 

@@ -28,11 +28,11 @@
     _suffixButton.cell.enabled = !_isEdit;
     [_suffixButton setAction:@selector(suffixChangeSelector:)];
     [_suffixButton setTarget:self];
+    [self suffixChangeSelector:_suffixButton];
     if (_isEdit) {
         [self setClassNameAndSuffixType];
         [self loadClassFileInfoText];
     }
-    [self suffixChangeSelector:_suffixButton];
 }
 
 - (void)setClassNameAndSuffixType
