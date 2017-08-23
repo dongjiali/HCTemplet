@@ -12,9 +12,9 @@ static NSString *OCStr = @"Objective-C";
 static NSString *SWStr = @"Swift";
 
 @interface HCTempletManager()
-@property (nonatomic ,strong) NSBundle      *pluginsBundle;
-@property (nonatomic ,strong) NSArray       *fileTemplets;
-@property (nonatomic ,strong) NSString      *hcTemplatesDirPath;
+@property (nonatomic ,strong) NSBundle       *pluginsBundle;
+@property (nonatomic ,copy) NSArray          *fileTemplets;
+@property (nonatomic ,copy) NSString         *hcTemplatesDirPath;
 @end
 
 @implementation HCTempletManager
@@ -45,7 +45,7 @@ static NSString *SWStr = @"Swift";
     languageDic[@"Default"] = [self fileLanguageByType];
     [self addTemplateClassAndImageList];
     templetDic[@"MainTemplateFiles"] = _fileTemplets;
-    [self saveTemplateInfoPlistData:templetDic];
+    [self saveTemplateInfoPlistData:templetDic path:self.fileTemplatesPath];
 }
 
 /**
@@ -54,7 +54,7 @@ static NSString *SWStr = @"Swift";
 - (void)addTemplateClassAndImageList
 {
     NSString *iconPath = [self.pluginsBundle pathForResource:OCStr ofType:@"png"];
-    if (_fileLanguage == HCFileTypeOC) {
+    if (_fileLanguage == HCFileLanguageTypeOC) {
         //create objective-c file
         NSString *classNameH = [self createClassName:@"ViewController" suffix:@"h"];
         NSString *classNameM = [self createClassName:@"ViewController" suffix:@"m"];
@@ -115,12 +115,12 @@ static NSString *SWStr = @"Swift";
  *
  *  @return key list
  */
-- (NSArray *)classFilesForTemplet:(NSString *)templet
+- (NSArray *)classFilesForTemplet:(NSString *)templet path:(NSString *)path
 {
     NSError *error = nil;
     self.completionName = templet;
-    NSMutableArray *classList = [NSMutableArray arrayWithCapacity:1];
-    NSArray *array = [FileManager contentsOfDirectoryAtPath:self.fileTemplatesPath  error:&error];
+    NSMutableArray *classList = [NSMutableArray array];
+    NSArray *array = [FileManager contentsOfDirectoryAtPath:path  error:&error];
     for (NSString *key in array) {
         if ([key hasPrefix:@"___FILEBASENAME___"]) {
             [classList addObject:key];
@@ -150,9 +150,9 @@ static NSString *SWStr = @"Swift";
  *
  *  @param templetDic info dic
  */
-- (void)saveTemplateInfoPlistData:(NSDictionary *)templetDic
+- (void)saveTemplateInfoPlistData:(NSDictionary *)templetDic path:(NSString *)filePath
 {
-    NSString *hcFilePatch = self.fileTemplatesPath;
+    NSString *hcFilePatch = filePath;
     NSString *filename =[hcFilePatch stringByAppendingPathComponent:@"TemplateInfo.plist"];
     if ([FileManager fileExistsAtPath:hcFilePatch]) {
         [templetDic writeToFile:filename atomically:YES];
@@ -164,10 +164,10 @@ static NSString *SWStr = @"Swift";
  *
  *  @param name template name
  */
-- (void)deleteXCTemplateForName:(NSString *)name
+- (void)deleteXCTemplateForName:(NSString *)name path:(NSString *)path
 {
     self.completionName = name;
-    NSString *hcFilePatch = self.fileTemplatesPath;
+    NSString *hcFilePatch = path;
     if ([FileManager fileExistsAtPath:hcFilePatch]) {
         NSError *err;
         [FileManager removeItemAtPath:hcFilePatch error:&err];
@@ -179,9 +179,9 @@ static NSString *SWStr = @"Swift";
  *
  *  @param fileName
  */
-- (void)deleteClassFile:(NSString *)fileName
+- (void)deleteClassFile:(NSString *)fileName path:(NSString *)path
 {
-    NSString *hcFilePatch = [self.fileTemplatesPath stringByAppendingPathComponent:fileName];
+    NSString *hcFilePatch = [path stringByAppendingPathComponent:fileName];
     if ([FileManager fileExistsAtPath:hcFilePatch]) {
         NSError *err;
         [FileManager removeItemAtPath:hcFilePatch error:&err];
@@ -194,9 +194,9 @@ static NSString *SWStr = @"Swift";
  *  @param className class name
  *  @param string    class text
  */
-- (void)createClassFileWithName:(NSString *)className infoString:(NSString *)string
+- (void)createClassFileWithPath:(NSString *)path name:(NSString *)className infoString:(NSString *)string
 {
-    NSString *hcFilePatch = self.fileTemplatesPath;
+    NSString *hcFilePatch = path;
     if ([FileManager fileExistsAtPath:hcFilePatch]) {
         NSError *error = nil;
         [string writeToFile:[NSString stringWithFormat:@"%@/%@",hcFilePatch,className] atomically:YES encoding:NSUTF8StringEncoding error:&error];
@@ -235,6 +235,28 @@ static NSString *SWStr = @"Swift";
     if ([FileManager fileExistsAtPath:self.fileTemplatesPath]) {
         [FileManager copyItemAtPath:srcPath toPath:[NSString stringWithFormat:@"%@/%@",self.fileTemplatesPath,fileName] error:&error];
     }
+}
+
+- (NSMutableDictionary *)systemTemplatePlistData {
+    NSString *resourcePath = [[NSBundle mainBundle] bundlePath];
+    NSString *sysXcodeTemplatePlistPath = [self.systempTempatePath stringByAppendingString:@"TemplateInfo.plist"];
+    NSMutableDictionary *templetDic = [[NSMutableDictionary alloc]initWithContentsOfFile:sysXcodeTemplatePlistPath];
+    NSLog(@"%@",resourcePath);
+    return templetDic;
+}
+
+- (NSMutableArray *)systemClassValues {
+    NSArray *optionArray = self.systemTemplatePlistData[@"Options"];
+    NSMutableArray *valueArray = nil;
+    for (NSDictionary *dic in optionArray) {
+        for (NSString *key in dic.allKeys) {
+            if ([key isEqualToString:@"Identifier"] &&
+                [dic[@"Identifier"] isEqualToString:@"cocoaTouchSubclass"]) {
+                valueArray = dic[@"Values"];
+            }
+        }
+    }
+    return valueArray;
 }
 
 /**
@@ -317,6 +339,38 @@ static NSString *SWStr = @"Swift";
 }
 
 /**
+ *  system tempate Path
+ *
+ */
+- (NSString *)systempTempatePath
+{
+    if (!_systempTempatePath) {
+        NSString *resourcePath = [[NSBundle mainBundle] bundlePath];
+        NSString *templateInfoPlistPath = @"/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates/Source/Cocoa Touch Class.xctemplate/";
+        _systempTempatePath = [resourcePath stringByAppendingString:templateInfoPlistPath];
+        
+        // 检查权限
+        NSString *userName = [[HCTempletManager runShellCommand:@"echo $USER"] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        NSString *path = [_systempTempatePath stringByReplacingOccurrencesOfString:@" " withString:@"' '"];
+        
+        NSString *folderPermission = [HCTempletManager runShellCommand:[NSString stringWithFormat:@"ls -l %@",path]];
+        
+        if (![folderPermission containsString:userName]) {
+            // 给文件夹添加权限
+            NSString *script = [NSString stringWithFormat:@"do shell script \"chown -R %@ %@\" with administrator privileges", userName, path];
+            NSDictionary *errorDict = nil;
+            NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
+            if ([appleScript executeAndReturnError:&errorDict]) {
+                NSLog(@"execcute success");
+            } else {
+                NSLog(@"%@",[NSString stringWithFormat:@"execute failure : %@", errorDict]);
+            }
+        }
+    }
+    return _systempTempatePath;
+}
+
+/**
  *  TemplateInfo.plist path
  *
  */
@@ -328,6 +382,18 @@ static NSString *SWStr = @"Swift";
 
 - (NSString *)fileLanguageByType
 {
-    return self.fileLanguage==HCFileTypeOC?OCStr:SWStr;
+    return self.fileLanguage == HCFileLanguageTypeOC ? OCStr : SWStr;
+}
+
++ (NSString *)runShellCommand:(NSString *)shell {
+    NSPipe* pipe = [NSPipe pipe];
+    NSTask* task = [[NSTask alloc] init];
+    [task setLaunchPath: @"/bin/sh"];
+    [task setArguments:@[@"-c", [NSString stringWithFormat:@"%@", shell]]];
+    [task setStandardOutput:pipe];
+    NSFileHandle* file = [pipe fileHandleForReading];
+    [task launch];
+    return [[NSString alloc] initWithData:[file readDataToEndOfFile] encoding:NSUTF8StringEncoding];
 }
 @end
+

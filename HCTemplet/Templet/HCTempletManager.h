@@ -11,24 +11,37 @@
 #define FileManager [NSFileManager defaultManager]
 #define OCTitleName @"Objective-CøOCStr"
 #define SwiftTitleName @"SwiftøSWStr"
-typedef enum HCFileLanguageType
-{
-    HCFileTypeOC = 0,
-    HCFileTypeSwift
-}HCFileLanguageType;
+
+typedef NS_ENUM(NSUInteger, HCFileLanguageType) {
+    HCFileLanguageTypeOC = 0,
+    HCFileLanguageTypeSwift
+};
+
+typedef NS_ENUM(NSUInteger, HCTempateFileType) {
+    HCTempateFileTypeSystem,
+    HCTempateFileTypeCustom,
+};
+
 
 @interface HCTempletManager : NSObject
 @property (nonatomic ,assign) HCFileLanguageType    fileLanguage;
-@property (nonatomic ,strong) NSString*             completionName;     //plist Nmae
-@property (nonatomic ,strong) NSString*             fileTemplatesPath;  //Templates path
-@property (nonatomic ,strong) NSString*             xcpluginPath;       //plugin path
+@property (nonatomic ,assign) HCTempateFileType     tempateType;
+@property (nonatomic ,copy) NSString*             completionName;     //plist Nmae
+@property (nonatomic ,copy) NSString*             fileTemplatesPath;  //Templates path
+@property (nonatomic ,copy) NSString*             xcpluginPath;       //plugin path
+@property (nonatomic ,copy) NSString*             systempTempatePath; // xcode system tempate path
 
-@property (nonatomic ,strong) NSString*             egClassHPath;       //objective c eg .h path
-@property (nonatomic ,strong) NSString*             egClassMPath;       //objective c eg .m path
-@property (nonatomic ,strong) NSString*             egClassSPath;       //swift c eg .swift path
+@property (nonatomic ,copy) NSString*             egClassHPath;       //objective c eg .h path
+@property (nonatomic ,copy) NSString*             egClassMPath;       //objective c eg .m path
+@property (nonatomic ,copy) NSString*             egClassSPath;       //swift c eg .swift path
+
+@property (nonatomic ,strong) NSMutableDictionary* systemTemplatePlistData; // system Template data
+@property (nonatomic ,strong) NSMutableArray*     systemClassValues; // system class array
 
 + (instancetype)sharedInstance;
 
+// 运行shell脚本
++ (NSString *)runShellCommand:(NSString *)shell;
 /**
  *  create Template xctemplate
  */
@@ -38,15 +51,16 @@ typedef enum HCFileLanguageType
  *  save template info plist to hc xctemplate
  *
  *  @param templetDic info dic
+ *         file path
  */
-- (void)saveTemplateInfoPlistData:(NSDictionary *)templetDic;
+- (void)saveTemplateInfoPlistData:(NSDictionary *)templetDic path:(NSString *)filePath;
 
 /**
  *  delete hc template
  *
  *  @param name template name
  */
-- (void)deleteXCTemplateForName:(NSString *)name;
+- (void)deleteXCTemplateForName:(NSString *)name path:(NSString *)path;
 
 /**
  *  get plugins keys
@@ -59,10 +73,10 @@ typedef enum HCFileLanguageType
  *  get class file Name
  *
  *  @param templet templet name
- *
+ *  @param tempale path
  *  @return key list
  */
-- (NSArray *)classFilesForTemplet:(NSString *)templet;
+- (NSArray *)classFilesForTemplet:(NSString *)templet path:(NSString *)path;
 
 /**
  *  get language icon image
@@ -89,14 +103,14 @@ typedef enum HCFileLanguageType
  *  @param className class name
  *  @param string    class text
  */
-- (void)createClassFileWithName:(NSString *)className infoString:(NSString *)string;
+- (void)createClassFileWithPath:(NSString *)path name:(NSString *)className infoString:(NSString *)string;
 
 /**
  *  delete Template for class file
  *
  *  @param fileName
  */
-- (void)deleteClassFile:(NSString *)fileName;
+- (void)deleteClassFile:(NSString *)fileName path:(NSString *)path;
 
 /**
  *  get templet info plist data
@@ -106,5 +120,4 @@ typedef enum HCFileLanguageType
  *  @return plist info Dic
  */
 - (NSMutableDictionary *)fileTempletInfoPlistWithName:(NSString *)name;
-
 @end

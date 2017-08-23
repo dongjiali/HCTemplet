@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "HCTempletManager.h"
 typedef void(^save_class_file_block)(NSString *className);
 
 @interface HCClassEditController : NSWindowController

@@ -7,12 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HCTempletManager.h"
 
 typedef void(^save_templet_block)(NSString *className);
 
 @interface HCTempletEditController : NSWindowController
 
 @property (nonatomic, copy) save_templet_block saveBlock;
+
+@property (nonatomic, assign) HCTempateFileType tempateType;
 
 - (instancetype)initWithWindowNibName:(NSString *)windowNibName className:(NSString *)name;
 @end

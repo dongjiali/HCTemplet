@@ -28,10 +28,17 @@
     _suffixButton.cell.enabled = !_isEdit;
     [_suffixButton setAction:@selector(suffixChangeSelector:)];
     [_suffixButton setTarget:self];
-    [self suffixChangeSelector:_suffixButton];
+    
     if (_isEdit) {
         [self setClassNameAndSuffixType];
         [self loadClassFileInfoText];
+    }
+    else {
+        [self suffixChangeSelector:_suffixButton];
+        if (self.templetManager.tempateType == HCTempateFileTypeSystem) {
+            _classNameTextField.cell.enabled = NO;
+            _classNameTextField.stringValue = _templetName;
+        }
     }
 }
 
@@ -49,7 +56,13 @@
         [_suffixButton selectItem:[_suffixButton itemAtIndex:2]];
     }
     className = [self replacingString:className empty:@"___FILEBASENAME___"];
-    _classNameTextField.stringValue = className;
+    
+    if (_templetManager.tempateType == HCTempateFileTypeCustom) {
+        _classNameTextField.stringValue = className;
+    }
+    else {
+        _classNameTextField.stringValue = _templetName;
+    }
 }
 
 - (NSString *)replacingString:(NSString *)className empty:(NSString *)string
@@ -59,21 +72,39 @@
 
 - (void)loadClassFileInfoText
 {
-    NSError *error=nil;
-    NSString *filePath = [_templetManager.fileTemplatesPath stringByAppendingPathComponent:_className];
-    NSString *text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    _fileTextView.string = text;
+    NSError *error = nil;
+    NSString *filePath = nil;
+    NSString *text = nil;
+    if (_templetManager.tempateType == HCTempateFileTypeSystem) {
+         NSString *language = self.templetManager.fileLanguage == HCFileLanguageTypeOC?@"Objective-C" : @"Swift";
+        filePath = [_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@/%@",_templetName, language, _className]];
+        text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    }
+    else if (_templetManager.tempateType == HCTempateFileTypeCustom) {
+        filePath = [_templetManager.fileTemplatesPath stringByAppendingPathComponent:_className];
+        text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    }
+    if (!error) {
+        _fileTextView.string = text;
+    }
 }
 
 - (IBAction)saveClassFile:(id)sender
 {
     NSString *suffix = [_suffixButton itemTitleAtIndex:_suffixButton.indexOfSelectedItem];
     if (_classNameTextField.stringValue.length > 0 && suffix.length >0) {
-        NSString *fileNmae = [_templetManager createClassName:_classNameTextField.stringValue suffix:suffix];
-        [_templetManager createClassFileWithName:fileNmae infoString:_fileTextView.string];
+        NSString *fileName = [_templetManager createClassName:_classNameTextField.stringValue suffix:suffix];
+        if (self.templetManager.tempateType == HCTempateFileTypeCustom) {
+            [_templetManager createClassFileWithPath:_templetManager.fileTemplatesPath name:fileName infoString:_fileTextView.string];
+        }
+        else if (self.templetManager.tempateType == HCTempateFileTypeSystem) {
+            NSString *language = self.templetManager.fileLanguage == HCFileLanguageTypeOC?@"Objective-C" : @"Swift";
+            NSString *className = self.className ? : [NSString stringWithFormat:@"___FILEBASENAME___.%@", suffix];
+            [_templetManager createClassFileWithPath:[_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@/",_templetName,language]] name:className infoString:_fileTextView.string];
+        }
         [self close];
         if (_saveBlock) {
-            _saveBlock(fileNmae);
+            _saveBlock(fileName);
         }
     }
 }

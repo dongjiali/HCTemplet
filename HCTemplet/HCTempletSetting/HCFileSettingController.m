@@ -17,8 +17,8 @@
 @property (nonatomic, weak) IBOutlet NSButton               *addCalssBtn;
 @property (nonatomic, weak) IBOutlet NSButton               *removeClassBtn;
 @property (nonatomic, weak) IBOutlet NSTableView            *tableView;
+@property (nonatomic, weak) IBOutlet NSPopUpButton          *popUpButton;
 @property (nonatomic, weak) IBOutlet HCFilesCollectionView  *collectionView;
-@property (nonatomic, weak) IBOutlet NSSearchField          *searchField;
 
 @property (nonatomic, strong) HCTempletEditController       *templetEditController;
 @property (nonatomic, strong) HCClassEditController         *classEditController;
@@ -42,10 +42,11 @@
     [self.tableView setHeaderView:nil];
     [self.tableView setGridStyleMask:NSTableViewSolidVerticalGridLineMask | NSTableViewSolidHorizontalGridLineMask];
     [self.tableView setGridColor:[NSColor clearColor]];
-    [self reloadDataWithFilter:nil];
-    [self.tableView reloadData];
+    self.fileTempletPlist.tempateType = HCTempateFileTypeSystem;
+    [self reloadTemplateData];
     
     [self classFileEditControllerBlock];
+    
 }
 
 - (void)dealloc {
@@ -55,18 +56,47 @@
 }
 
 #pragma mark - Private Method
-- (void)reloadDataWithFilter:(NSString *)filter {
-    _listOfFiles = [[NSMutableArray alloc]initWithArray:[self.fileTempletPlist fileTempletsKeys]];
-    _classFiles = [[NSMutableArray alloc]initWithCapacity:1];
+- (void)reloadTemplateData {
+    if (self.fileTempletPlist.tempateType == HCTempateFileTypeSystem) {
+        [self reloadSystemTemplateData];
+    }
+    else if (self.fileTempletPlist.tempateType == HCTempateFileTypeCustom) {
+        [self reloadCustomTemplateData];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)reloadSystemTemplateData {
+    NSArray *classArray = self.fileTempletPlist.systemClassValues;
+    
+    _listOfFiles = [NSMutableArray array];
+    [_listOfFiles addObject:OCTitleName];
+    [_listOfFiles addObjectsFromArray:classArray];
+    [_listOfFiles addObject:SwiftTitleName];
+    [_listOfFiles addObjectsFromArray:classArray];
+    
+    NSInteger spaceCount = _listOfFiles.count / 2;
+    _classFiles = [[NSMutableArray alloc] initWithCapacity:1];
+    for (NSInteger i = 0; i < _listOfFiles.count; i++) {
+        NSString *suffix = i < spaceCount ? @"Objective-C" : @"Swift";
+        NSString *folderPath = [NSString stringWithFormat:@"%@%@%@/",self.fileTempletPlist.systempTempatePath, _listOfFiles[i], suffix];
+        NSMutableArray *classFiles = [[NSMutableArray alloc]initWithArray:[self.fileTempletPlist classFilesForTemplet:_listOfFiles[i] path:folderPath]];
+        [_classFiles addObject:classFiles];
+    }
+}
+
+- (void)reloadCustomTemplateData {
+    _listOfFiles = [[NSMutableArray alloc] initWithArray:[self.fileTempletPlist fileTempletsKeys]];
+    _classFiles = [[NSMutableArray alloc] initWithCapacity:1];
     for (NSString *key in _listOfFiles) {
-        NSMutableArray *classFiles = [[NSMutableArray alloc]initWithArray:[self.fileTempletPlist classFilesForTemplet:key]];
+        NSMutableArray *classFiles = [[NSMutableArray alloc]initWithArray:[self.fileTempletPlist classFilesForTemplet:key path:self.fileTempletPlist.fileTemplatesPath]];
         [_classFiles addObject:classFiles];
     }
 }
 
 - (void)reloadFileWithTemplet
 {
-    [self reloadDataWithFilter:nil];
+    [self reloadTemplateData];
     NSInteger row = _tableView.selectedRow;
     if (row >= 0 && _classFiles.count > row) {
         _collectionView.classFileList = _classFiles[row];
@@ -74,6 +104,35 @@
     {
         _collectionView.classFileList = nil;
     }
+}
+
+- (void)deleteTemplateFileWithRow:(NSInteger)row {
+    NSString *templetString = self.listOfFiles[row];
+    if (self.fileTempletPlist.tempateType == HCTempateFileTypeSystem) {
+        // 插入到plist文件
+        NSString *path = self.fileTempletPlist.systempTempatePath;
+        NSDictionary *dic = [self.fileTempletPlist systemTemplatePlistData];
+        NSArray *optionArray = dic[@"Options"];
+        NSMutableArray *valueArray = nil;
+        for (NSDictionary *dic in optionArray) {
+            for (NSString *key in dic.allKeys) {
+                if ([key isEqualToString:@"Identifier"] &&
+                    [dic[@"Identifier"] isEqualToString:@"cocoaTouchSubclass"]) {
+                    valueArray = dic[@"Values"];
+                }
+            }
+        }
+        [valueArray removeObject:templetString];
+        NSLog(@"%@",valueArray);
+        [self.fileTempletPlist saveTemplateInfoPlistData:dic path:path];
+        
+        [self.fileTempletPlist deleteXCTemplateForName:templetString path:[NSString stringWithFormat:@"%@/%@Objective-C",self.fileTempletPlist.systempTempatePath,templetString]];
+        [self.fileTempletPlist deleteXCTemplateForName:templetString path:[NSString stringWithFormat:@"%@/%@Swift",self.fileTempletPlist.systempTempatePath,templetString]];
+    }
+    else if (self.fileTempletPlist.tempateType == HCTempateFileTypeCustom) {
+        [self.fileTempletPlist deleteXCTemplateForName:templetString path:self.fileTempletPlist.fileTemplatesPath];
+    }
+    [self reloadFileWithTemplet];
 }
 
 - (void)classFileEditControllerBlock
@@ -92,22 +151,33 @@
     };
 }
 
-- (void)changeClassViewStatusByClassLists:(NSArray *)list
+- (void)changeClassViewStatusByTitle:(NSString *)title
 {
-    _classInfoLabel.hidden = !list.count;
-    _addCalssBtn.hidden = !list.count;
-    _removeClassBtn.hidden = !list.count;
+    BOOL tag = [title isEqualToString:SwiftTitleName] || [title isEqualToString:OCTitleName];
+    _classInfoLabel.hidden = tag;
+    _addCalssBtn.hidden = tag;
+    _removeClassBtn.hidden = tag;
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
-    NSTableView *tableView =notification.object;
+    NSTableView *tableView = notification.object;
     NSInteger row = tableView.selectedRow;
     if (row >= 0) {
+        
+        NSInteger index = [self.listOfFiles indexOfObject:SwiftTitleName];
+        _fileTempletPlist.fileLanguage = row < index ? HCFileLanguageTypeOC :
+        HCFileLanguageTypeSwift;
+        
         _fileTempletPlist.completionName = self.listOfFiles[row];
         self.collectionView.classFileList = self.classFiles[row];
-        [self changeClassViewStatusByClassLists:self.classFiles[row]];
+        [self changeClassViewStatusByTitle:_fileTempletPlist.completionName];
     }
+}
+
+- (IBAction)changeTemplateAction:(NSPopUpButton *)button {
+    self.fileTempletPlist.tempateType = (HCTempateFileType)button.selectedTag;
+    [self reloadTemplateData];
 }
 
 - (IBAction)addNewTemplet:(id)sender {
@@ -127,10 +197,7 @@
         [alert beginSheetModalForWindow:self.window
                       completionHandler:^(NSModalResponse returnCode) {
                           if (returnCode == NSAlertFirstButtonReturn) {
-                              NSString *templetString = weakSelf.listOfFiles[row];
-                              [weakSelf.fileTempletPlist deleteXCTemplateForName:templetString];
-                              [weakSelf reloadFileWithTemplet];
-                              [weakSelf.tableView reloadData];
+                              [weakSelf deleteTemplateFileWithRow:row];
                           }
                       }];
     }
@@ -154,8 +221,7 @@
                                     NSMaxY(windowFrame) - NSHeight(prefsFrame) - 20.0);
     
     _templetEditController.saveBlock = ^(NSString *className){
-        [weakSelf reloadDataWithFilter:nil];
-        [weakSelf.tableView reloadData];
+        [weakSelf reloadTemplateData];
     };
     [[_templetEditController window] setFrame:prefsFrame display:NO];
     [_templetEditController showWindow:sender];
@@ -189,7 +255,14 @@
 
 - (IBAction)removeClassFile:(id)sender
 {
-    [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile];
+    if (self.fileTempletPlist.tempateType == HCTempateFileTypeCustom) {
+        [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile path:self.fileTempletPlist.fileTemplatesPath];
+    }
+    else if (self.fileTempletPlist.tempateType == HCTempateFileTypeSystem) {
+        NSString *language = self.fileTempletPlist.fileLanguage == HCFileLanguageTypeOC ? @"Objective-C" : @"Swift";
+        [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile path:[NSString stringWithFormat:@"%@%@%@",self.fileTempletPlist.systempTempatePath,_fileTempletPlist.completionName,language]];
+    }
+    
     [self reloadFileWithTemplet];
 }
 

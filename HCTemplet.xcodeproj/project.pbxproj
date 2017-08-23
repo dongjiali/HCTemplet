@@ -383,6 +383,7 @@
 				CD46B7D61CED644C00370A6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
