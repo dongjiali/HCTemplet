@@ -6,13 +6,13 @@
 //___COPYRIGHT___
 //
 
-#import "___FILEBASENAMEASIDENTIFIER___ViewController.h"
+#import "___FILEBASENAME___.h"
 
-@interface ___FILEBASENAMEASIDENTIFIER___ViewController ()
+@interface ___FILEBASENAMEASIDENTIFIER___ ()
 
 @end
 
-@implementation ___FILEBASENAMEASIDENTIFIER___ViewController
+@implementation ___FILEBASENAMEASIDENTIFIER___
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad {

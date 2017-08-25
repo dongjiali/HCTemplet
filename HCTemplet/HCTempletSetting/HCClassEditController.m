@@ -76,8 +76,7 @@
     NSString *filePath = nil;
     NSString *text = nil;
     if (_templetManager.tempateType == HCTempateFileTypeSystem) {
-         NSString *language = self.templetManager.fileLanguage == HCFileLanguageTypeOC?@"Objective-C" : @"Swift";
-        filePath = [_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@/%@",_templetName, language, _className]];
+        filePath = [_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",_templetName, _className]];
         text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     }
     else if (_templetManager.tempateType == HCTempateFileTypeCustom) {
@@ -98,9 +97,8 @@
             [_templetManager createClassFileWithPath:_templetManager.fileTemplatesPath name:fileName infoString:_fileTextView.string];
         }
         else if (self.templetManager.tempateType == HCTempateFileTypeSystem) {
-            NSString *language = self.templetManager.fileLanguage == HCFileLanguageTypeOC?@"Objective-C" : @"Swift";
             NSString *className = self.className ? : [NSString stringWithFormat:@"___FILEBASENAME___.%@", suffix];
-            [_templetManager createClassFileWithPath:[_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@/",_templetName,language]] name:className infoString:_fileTextView.string];
+            [_templetManager createClassFileWithPath:[_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/",_templetName]] name:className infoString:_fileTextView.string];
         }
         [self close];
         if (_saveBlock) {

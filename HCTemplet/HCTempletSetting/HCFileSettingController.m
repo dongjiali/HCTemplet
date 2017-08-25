@@ -22,9 +22,9 @@
 
 @property (nonatomic, strong) HCTempletEditController       *templetEditController;
 @property (nonatomic, strong) HCClassEditController         *classEditController;
-@property (nonatomic, strong) HCTempletManager        *fileTempletPlist;
-@property (nonatomic, copy) NSMutableArray              *listOfFiles;
-@property (nonatomic, copy) NSMutableArray              *classFiles;
+@property (nonatomic, strong) HCTempletManager              *fileTempletPlist;
+@property (nonatomic, strong) NSMutableArray                *listOfFiles;
+@property (nonatomic, strong) NSMutableArray                *classFiles;
 @end
 
 @implementation HCFileSettingController
@@ -43,6 +43,7 @@
     [self.tableView setGridStyleMask:NSTableViewSolidVerticalGridLineMask | NSTableViewSolidHorizontalGridLineMask];
     [self.tableView setGridColor:[NSColor clearColor]];
     self.fileTempletPlist.tempateType = HCTempateFileTypeSystem;
+    //加载模版数据
     [self reloadTemplateData];
     
     [self classFileEditControllerBlock];
@@ -66,25 +67,29 @@
     [self.tableView reloadData];
 }
 
+// 加载xcode系统模版数据
 - (void)reloadSystemTemplateData {
     NSArray *classArray = self.fileTempletPlist.systemClassValues;
     
     _listOfFiles = [NSMutableArray array];
     [_listOfFiles addObject:OCTitleName];
-    [_listOfFiles addObjectsFromArray:classArray];
+    for (NSString *key in classArray) {
+        [_listOfFiles addObject:[NSString stringWithFormat:@"%@%@",key, @"Objective-C"]];
+    }
     [_listOfFiles addObject:SwiftTitleName];
-    [_listOfFiles addObjectsFromArray:classArray];
+    for (NSString *key in classArray) {
+        [_listOfFiles addObject:[NSString stringWithFormat:@"%@%@",key, @"Swift"]];
+    }
     
-    NSInteger spaceCount = _listOfFiles.count / 2;
-    _classFiles = [[NSMutableArray alloc] initWithCapacity:1];
+    _classFiles = [NSMutableArray array];
     for (NSInteger i = 0; i < _listOfFiles.count; i++) {
-        NSString *suffix = i < spaceCount ? @"Objective-C" : @"Swift";
-        NSString *folderPath = [NSString stringWithFormat:@"%@%@%@/",self.fileTempletPlist.systempTempatePath, _listOfFiles[i], suffix];
-        NSMutableArray *classFiles = [[NSMutableArray alloc]initWithArray:[self.fileTempletPlist classFilesForTemplet:_listOfFiles[i] path:folderPath]];
+        NSString *folderPath = [NSString stringWithFormat:@"%@%@/",self.fileTempletPlist.systempTempatePath, _listOfFiles[i]];
+        NSMutableArray *classFiles = [[NSMutableArray alloc] initWithArray:[self.fileTempletPlist classFilesForTemplet:_listOfFiles[i] path:folderPath]];
         [_classFiles addObject:classFiles];
     }
 }
 
+// 加载自定义模版数据
 - (void)reloadCustomTemplateData {
     _listOfFiles = [[NSMutableArray alloc] initWithArray:[self.fileTempletPlist fileTempletsKeys]];
     _classFiles = [[NSMutableArray alloc] initWithCapacity:1];
@@ -94,6 +99,7 @@
     }
 }
 
+// 刷新当前选中模版数据
 - (void)reloadFileWithTemplet
 {
     [self reloadTemplateData];
@@ -253,14 +259,14 @@
     [_classEditController showWindow:_classEditController];
 }
 
+// 删除选中模版
 - (IBAction)removeClassFile:(id)sender
 {
     if (self.fileTempletPlist.tempateType == HCTempateFileTypeCustom) {
         [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile path:self.fileTempletPlist.fileTemplatesPath];
     }
     else if (self.fileTempletPlist.tempateType == HCTempateFileTypeSystem) {
-        NSString *language = self.fileTempletPlist.fileLanguage == HCFileLanguageTypeOC ? @"Objective-C" : @"Swift";
-        [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile path:[NSString stringWithFormat:@"%@%@%@",self.fileTempletPlist.systempTempatePath,_fileTempletPlist.completionName,language]];
+        [_fileTempletPlist deleteClassFile:_collectionView.selectedClassFile path:[NSString stringWithFormat:@"%@%@",self.fileTempletPlist.systempTempatePath,_fileTempletPlist.completionName]];
     }
     
     [self reloadFileWithTemplet];
@@ -303,7 +309,6 @@
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
     return 20;
 }
-
 
 #pragma mark - Getters & Setters
 - (HCTempletManager *)fileTempletPlist
