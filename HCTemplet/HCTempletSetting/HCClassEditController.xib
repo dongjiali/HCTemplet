@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="cancelButton" destination="ouI-nZ-BwK" id="IBm-0i-gMx"/>
                 <outlet property="classNameTextField" destination="IBQ-W9-KOa" id="HTZ-hg-iU2"/>
-                <outlet property="deleteButton" destination="RjO-dz-1BV" id="nqd-pI-22E"/>
                 <outlet property="fileTextView" destination="hgc-6h-NAt" id="qrK-Ro-keh"/>
                 <outlet property="saveButton" destination="QPb-WF-d3o" id="5k9-2V-g78"/>
                 <outlet property="suffixButton" destination="vjI-3B-kCA" id="hyr-Js-hkX"/>
@@ -106,19 +105,6 @@ Gw
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RjO-dz-1BV">
-                        <rect key="frame" x="15" y="13" width="80" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="68" id="3Ip-R2-7Bk"/>
-                        </constraints>
-                        <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pgL-n4-8bU">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="deleteClassFile:" target="-2" id="vf9-Q6-JFm"/>
-                        </connections>
-                    </button>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vjI-3B-kCA">
                         <rect key="frame" x="305" y="562" width="113" height="26"/>
                         <constraints>
@@ -160,7 +146,6 @@ Gw
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RjO-dz-1BV" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="21" id="0Cd-HZ-M5D"/>
                     <constraint firstItem="Irn-1i-Dw1" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="3xV-4d-Yva"/>
                     <constraint firstItem="bmT-ej-wEc" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="4Vu-Pi-nMj"/>
                     <constraint firstItem="rjO-2v-0SM" firstAttribute="leading" secondItem="IBQ-W9-KOa" secondAttribute="trailing" constant="4" id="8fa-cv-OTV"/>
@@ -179,7 +164,6 @@ Gw
                     <constraint firstItem="ZOA-ZL-WMY" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="sy3-w0-IXx"/>
                     <constraint firstAttribute="bottom" secondItem="ZOA-ZL-WMY" secondAttribute="bottom" constant="61" id="t2s-hj-s2y"/>
                     <constraint firstAttribute="trailing" secondItem="QPb-WF-d3o" secondAttribute="trailing" constant="20" id="tH2-Dd-GPs"/>
-                    <constraint firstAttribute="bottom" secondItem="RjO-dz-1BV" secondAttribute="bottom" constant="20" id="trc-9u-NUZ"/>
                 </constraints>
             </view>
             <connections>

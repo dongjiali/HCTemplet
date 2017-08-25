@@ -46,8 +46,7 @@
     //加载模版数据
     [self reloadTemplateData];
     
-    [self classFileEditControllerBlock];
-    
+    [self classFileEditControllerBlock];   
 }
 
 - (void)dealloc {

@@ -223,7 +223,7 @@
                             <action selector="addClassFile:" target="-2" id="Cj8-GJ-i0x"/>
                         </connections>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-aI-2q1">
+                    <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-aI-2q1">
                         <rect key="frame" x="18" y="494" width="165" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="160" id="BcA-5c-DBD"/>

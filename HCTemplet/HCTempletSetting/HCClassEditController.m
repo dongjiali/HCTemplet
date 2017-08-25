@@ -9,12 +9,11 @@
 #import "HCClassEditController.h"
 #import "HCTempletManager.h"
 @interface HCClassEditController ()<NSTextViewDelegate>
-@property (nonatomic, weak) IBOutlet NSTextField    *classNameTextField;
-@property (nonatomic, weak) IBOutlet NSPopUpButton  *suffixButton;
+@property (nonatomic, weak) IBOutlet NSTextField             *classNameTextField;
+@property (nonatomic, weak) IBOutlet NSPopUpButton           *suffixButton;
 @property (nonatomic, unsafe_unretained) IBOutlet NSTextView     *fileTextView;
-@property (nonatomic, weak) IBOutlet NSButton       *cancelButton;
-@property (nonatomic, weak) IBOutlet NSButton       *saveButton;
-@property (nonatomic, weak) IBOutlet NSButton       *deleteButton;
+@property (nonatomic, weak) IBOutlet NSButton                *cancelButton;
+@property (nonatomic, weak) IBOutlet NSButton                *saveButton;
 
 @property (nonatomic, strong) HCTempletManager  *templetManager;
 @end
@@ -29,11 +28,13 @@
     [_suffixButton setAction:@selector(suffixChangeSelector:)];
     [_suffixButton setTarget:self];
     
+    // 编辑
     if (_isEdit) {
         [self setClassNameAndSuffixType];
         [self loadClassFileInfoText];
     }
     else {
+        // 新增
         [self suffixChangeSelector:_suffixButton];
         if (self.templetManager.tempateType == HCTempateFileTypeSystem) {
             _classNameTextField.cell.enabled = NO;
@@ -42,6 +43,7 @@
     }
 }
 
+// 编辑是根据类名后缀显示suffixButton文案
 - (void)setClassNameAndSuffixType
 {
     NSString *className = _className;
@@ -65,29 +67,25 @@
     }
 }
 
-- (NSString *)replacingString:(NSString *)className empty:(NSString *)string
-{
-    return [className stringByReplacingOccurrencesOfString:string withString:@""];
-}
-
+// 加载文件内容
 - (void)loadClassFileInfoText
 {
     NSError *error = nil;
     NSString *filePath = nil;
     NSString *text = nil;
-    if (_templetManager.tempateType == HCTempateFileTypeSystem) {
-        filePath = [_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",_templetName, _className]];
-        text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    }
-    else if (_templetManager.tempateType == HCTempateFileTypeCustom) {
+    if (_templetManager.tempateType == HCTempateFileTypeCustom) {
         filePath = [_templetManager.fileTemplatesPath stringByAppendingPathComponent:_className];
-        text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     }
+    else if (_templetManager.tempateType == HCTempateFileTypeSystem) {
+        filePath = [_templetManager.systempTempatePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",_templetName, _className]];
+    }
+    text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (!error) {
         _fileTextView.string = text;
     }
 }
 
+// 保存文件内容
 - (IBAction)saveClassFile:(id)sender
 {
     NSString *suffix = [_suffixButton itemTitleAtIndex:_suffixButton.indexOfSelectedItem];
@@ -107,21 +105,7 @@
     }
 }
 
-- (IBAction)cancel:(id)sender
-{
-    [self close];
-}
-
-- (IBAction)deleteClassFile:(id)sender
-{
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",self.templetManager.fileTemplatesPath,@""];
-    if ([FileManager fileExistsAtPath:filePath]) {
-        NSError *err;
-        [FileManager removeItemAtPath:filePath error:&err];
-    }
-    [self close];
-}
-
+// 切换后缀名是加载不同默认模板数据
 - (void)suffixChangeSelector:(NSPopUpButton *)sender
 {
     NSString *classText = @"";
@@ -141,10 +125,20 @@
     _fileTextView.string = classText;
 }
 
+- (IBAction)cancel:(id)sender
+{
+    [self close];
+}
+
 - (NSString *)classInfoTextForPath:(NSString *)path
 {
     NSError *error = nil;
     return [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+}
+
+- (NSString *)replacingString:(NSString *)className empty:(NSString *)string
+{
+    return [className stringByReplacingOccurrencesOfString:string withString:@""];
 }
 
 #pragma mark - Getters & Setters

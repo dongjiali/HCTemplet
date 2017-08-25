@@ -43,7 +43,6 @@
 {
     if (self.templetInfo) {
         _templetNameTextField.stringValue = _templetInfo[@"DefaultCompletionName"];
-        
     }
 }
 
